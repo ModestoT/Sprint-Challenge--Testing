@@ -24,12 +24,12 @@ describe('server.js', () => {
         it('should return a list of games', async () => {
             const expected = [
                 { id: 1, title: 'Pacman', genre: 'Arcade', releaseYear: 1980 },
-                { id: 2, title: 'Pacman', genre: 'Arcade', releaseYear: 1980 },
-                { id: 3, title: 'Pacman', genre: 'Arcade', releaseYear: 1980 }];
+                { id: 2, title: 'Billy', genre: 'Arcade', releaseYear: 1980 },
+                { id: 3, title: 'This', genre: 'Arcade', releaseYear: 1980 }];
             
             await request(server).post('/games').send({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
-            await request(server).post('/games').send({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
-            await request(server).post('/games').send({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
+            await request(server).post('/games').send({ title: 'Billy', genre: 'Arcade', releaseYear: 1980 });
+            await request(server).post('/games').send({ title: 'This', genre: 'Arcade', releaseYear: 1980 });
 
             const res = await request(server).get('/games');
             
