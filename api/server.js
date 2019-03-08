@@ -25,7 +25,12 @@ server.post('/games', async (req, res) => {
     
                 res.status(200).json(game);
             } catch(error) {
-                res.status(500).json(error);
+
+                if(error.errno === 19){
+                    res.status(405).json({error: 'A Title with that name already exists' });
+                } else {
+                    res.status(500).json(error);
+                }
             }
         }
 });

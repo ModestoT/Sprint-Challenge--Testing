@@ -55,7 +55,7 @@ describe('server.js', () => {
             expect(res.status).toBe(200);
         });
 
-        it('should return a status code of 405 if a title with the same name is sent', () => {
+        it('should return a status code of 405 if a title with the same name is sent', async () => {
             const game = { title: 'Pacman', genre: 'Arcade', releaseYear: 1980 };
             await request(server).post('/games').send(game);
 
