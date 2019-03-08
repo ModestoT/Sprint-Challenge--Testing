@@ -1,0 +1,53 @@
+const express = require('express');
+
+const Games = require('../games/games-model.js');
+
+const server = express();
+
+server.use(express.json());
+
+server.get('/games', async (req, res) => {
+    try {
+        const games = await Games.getGames();
+
+        res.status(200).json(games);
+    } catch(error) {
+        res.status(500).json(error);
+    }
+});
+
+server.get('/game/:id', async (req, res) => {
+    try {
+        const game = await Games.getGameById(req.params.id);
+
+        if(game){
+            res.status(200).json(game);
+        } else {
+            res.status(404).json({error: 'No game with that ID exists' });
+        }
+    } catch(error) {
+        res.status(500).json(error);
+    }
+});
+
+server.post('/games', async (req, res) => {
+        if(!req.body.title || !req.body.genre){
+            res.status(422).json({error: 'A Title and Genre are required' });
+        } else {
+            try {
+                const game = await Games.addGame(req.body);
+    
+                res.status(200).json(game);
+            } catch(error) {
+
+                if(error.errno === 19){
+                    res.status(405).json({error: 'A Title with that name already exists' });
+                } else {
+                    res.status(500).json(error);
+                }
+            }
+        }
+});
+
+
+module.exports = server;
