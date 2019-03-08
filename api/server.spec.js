@@ -54,5 +54,14 @@ describe('server.js', () => {
 
             expect(res.status).toBe(200);
         });
+
+        it('should return a status code of 405 if a title with the same name is sent', () => {
+            const game = { title: 'Pacman', genre: 'Arcade', releaseYear: 1980 };
+            await request(server).post('/games').send(game);
+
+            const res = await request(server).post('/games').send(game);
+
+            expect(res.status).toBe(405);
+        })
     });
 });
