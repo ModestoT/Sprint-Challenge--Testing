@@ -18,7 +18,7 @@ describe('Games Model', () => {
             await Games.addGame({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
             await Games.addGame({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
             await Games.addGame({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
-            
+
             const games = await Games.getGames();
 
             expect(games).toHaveLength(3);
