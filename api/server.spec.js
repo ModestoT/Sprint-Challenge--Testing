@@ -62,6 +62,14 @@ describe('server.js', () => {
             const res = await request(server).post('/games').send(game);
 
             expect(res.status).toBe(405);
-        })
+        });
     });
+
+    describe('GET /game/:id', () => {
+        it('should return a 404 if the game with the id is not found', async () => {
+            const res = await request(server).get('/game/2');
+
+            expect(res.status).toBe(200);
+        });
+    })
 });

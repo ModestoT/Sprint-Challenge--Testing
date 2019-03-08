@@ -16,8 +16,8 @@ describe('Games Model', () => {
     describe('getGames()', () => {
         it('should return all the games that our in the database', async () => {
             await Games.addGame({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
-            await Games.addGame({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
-            await Games.addGame({ title: 'Pacman', genre: 'Arcade', releaseYear: 1980 });
+            await Games.addGame({ title: 'Billy', genre: 'Arcade', releaseYear: 1980 });
+            await Games.addGame({ title: 'this', genre: 'Arcade', releaseYear: 1980 });
 
             const games = await Games.getGames();
 
