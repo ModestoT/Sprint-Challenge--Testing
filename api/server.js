@@ -16,6 +16,20 @@ server.get('/games', async (req, res) => {
     }
 });
 
+server.get('/game/:id', async (req, res) => {
+    try {
+        const game = await Games.getGameById(req.params.id);
+
+        if(game){
+            res.status(200).json(game);
+        } else {
+            res.status(404).json({error: 'No game with that ID exists' });
+        }
+    } catch(error) {
+        res.status(500).json(error);
+    }
+});
+
 server.post('/games', async (req, res) => {
         if(!req.body.title || !req.body.genre){
             res.status(422).json({error: 'A Title and Genre are required' });
@@ -34,5 +48,6 @@ server.post('/games', async (req, res) => {
             }
         }
 });
+
 
 module.exports = server;

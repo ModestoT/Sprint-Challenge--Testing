@@ -67,9 +67,12 @@ describe('server.js', () => {
 
     describe('GET /game/:id', () => {
         it('should return a 404 if the game with the id is not found', async () => {
+            const game = { title: 'Pacman', genre: 'Arcade', releaseYear: 1980 };
+            await request(server).post('/games').send(game);
+
             const res = await request(server).get('/game/2');
 
-            expect(res.status).toBe(200);
+            expect(res.status).toBe(404);
         });
     })
 });
